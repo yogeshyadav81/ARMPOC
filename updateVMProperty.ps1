@@ -6,7 +6,15 @@
 )
 
    #Stop-AzureRmVM -ResourceGroupName $resourceGroupName -Name $vmName -Force
-   
+   $MyDomain='HCL'
+$MyClearTextUsername='vipul_ku'
+$MyClearTextPassword='Vip!060985'
+
+$MyUsernameDomain=$MyDomain+’\’+$MyClearTextUsername
+
+$SecurePassword=Convertto-SecureString –String $MyClearTextPassword –AsPlainText –force
+
+$MyCredentials=New-object System.Management.Automation.PSCredential $MyUsernameDomain,$SecurePassword
    $vm = Get-AzureRmVM -ResourceGroupName $resourceGroupName -Name $vmName
    $vm.HardwareProfile.VmSize = 'Standard_DS2_v2'#$vmSize
 
