@@ -15,6 +15,7 @@ $MyUsernameDomain=$MyDomain+’\’+$MyClearTextUsername
 $SecurePassword=Convertto-SecureString –String $MyClearTextPassword –AsPlainText –force
 
 $MyCredentials=New-object System.Management.Automation.PSCredential $MyUsernameDomain,$SecurePassword
+Connect-AzureRmAccount $MyCredentials
    $vm = Get-AzureRmVM -ResourceGroupName $resourceGroupName -Name $vmName
    $vm.HardwareProfile.VmSize = 'Standard_DS2_v2'#$vmSize
 
